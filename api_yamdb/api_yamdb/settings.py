@@ -84,7 +84,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-
 LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'

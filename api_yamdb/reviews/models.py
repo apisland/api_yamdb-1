@@ -31,8 +31,8 @@ class User(AbstractUser):
         blank=True,
         null=True,
         verbose_name='О себе'
-        )
-    
+    )
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
@@ -49,8 +49,9 @@ class User(AbstractUser):
 
         constraints = [
             models.CheckConstraint(
-                check=models.Q(username='me',
-                name='username cannot be me')
+                check=models.Q(
+                    username='me',
+                    name='username cannot be me')
             )
         ]
 
@@ -59,12 +60,12 @@ class Category(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название'
-        )
+    )
     slug = models.SlugField(
         unique=True,
         verbose_name='Идентификатор'
-        )
-    
+    )
+
     def __str__(self):
         return self.name
 
@@ -78,11 +79,11 @@ class Genre(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название'
-        )
+    )
     slug = models.SlugField(
         unique=True,
         verbose_name='Идентификатор'
-        )
+    )
 
     class Meta:
         verbose_name = 'Жанр'
@@ -94,11 +95,11 @@ class Titles(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название'
-        )
+    )
     year = models.IntegerField(
         max_length=4,
         verbose_name='Дата выхода'
-        )
+    )
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
@@ -109,7 +110,7 @@ class Titles(models.Model):
         verbose_name='Рейтинг',
         null=True,
         default=None
-        )
+    )
 
     def __str__(self):
         return self.name
@@ -162,7 +163,7 @@ class Reviews(models.Model):
             MinValueValidator(1, 'Оценка от 1 до 10')
         ],
         verbose_name='Рейтинг',
-        )
+    )
     pub_date = models.DateTimeField(
         'Опубликовано в:',
         auto_now_add=True,
@@ -207,4 +208,3 @@ class Comment(models.Model):
         ordering = ('pub_date',)
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
-        

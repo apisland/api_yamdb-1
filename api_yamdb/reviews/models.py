@@ -1,6 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import (MaxValueValidator, MinValueValidator,
+                                    RegexValidator)
+from django.db import models
 
 
 class User(AbstractUser):
@@ -17,9 +18,14 @@ class User(AbstractUser):
         verbose_name='Электронная почта'
     )
     username = models.CharField(
-        max_length=100,
+        max_length=150,
+        verbose_name='Имя пользователя',
         unique=True,
-        verbose_name='Имя пользователя'
+        db_index=True,
+        validators=[RegexValidator(
+            regex=r'^[\w.@+-]+$',
+            message='Имя пользователя содержит недопустимый символ'
+        )]
     )
     role = models.CharField(
         choices=ROLES,

@@ -28,6 +28,7 @@ class User(AbstractUser):
         )]
     )
     role = models.CharField(
+        max_length=250,
         choices=ROLES,
         default=USER,
         verbose_name='Роль'
@@ -53,13 +54,13 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
-        constraints = [
-            models.CheckConstraint(
-                check=models.Q(
-                    username='me',
-                    name='username cannot be me')
-            )
-        ]
+        #constraints = [
+        #    models.UniqueConstraint(
+        #            fields=['username'],
+        #            condition=models.Q(username='me'),
+        #            name='username_cannot_be_me'
+        #    ),
+        #]
 
 
 class Category(models.Model):
@@ -103,7 +104,6 @@ class Titles(models.Model):
         verbose_name='Название'
     )
     year = models.IntegerField(
-        max_length=4,
         verbose_name='Дата выхода'
     )
     category = models.ForeignKey(
@@ -149,6 +149,7 @@ class GenreTitle(models.Model):
 
 class Reviews(models.Model):
     text = models.CharField(
+        max_length=1000,
         verbose_name='Текст'
     )
     author = models.ForeignKey(
@@ -178,12 +179,12 @@ class Reviews(models.Model):
 
     class Meta:
         ordering = ('pub_date',)
-        constraints = [
-            models.UniqueConstraint(
-                fields=['title', 'author'],
-                name='unique_title_author'
-            )
-        ]
+        #constraints = [
+        #    models.UniqueConstraint(
+        #        fields=['title', 'author'],
+        #        name='unique_title_author'
+        #    )
+        #]
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
 

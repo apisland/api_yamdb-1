@@ -6,34 +6,25 @@ from rest_framework_simplejwt.views import (
 )
 
 from api.views import (
-    CategoryVitewSet,
+    CategoryViewSet,
     GenreViewSet,
     CommentViewSet,
     TitlesViewSet,
     UserViewSet,
-    ReviewViewSet,
+    ReviewsViewSet,
 )
 
 app_name = 'api'
 
 router = DefaultRouter()
-#router.register('auth/signup', AuthViewset, basename='auth')
-#router.register('auth/token', TokenViewset, basename='tokenauth')
-#router.register('categories', CategoriesVitewSet, basename='categories')
-#router.register('genres', GenreViewSet, basename='genre')
-#router.register(
-#    r'titles/(?P<title_id>\d+)/reviews/(?P<review_id>\d+)/comments/(?P<comment_id>\d+)',
-#                TitleViewSet, basename='comments'
-#)
-#router.register('users', UserViewSet, basename='users')
 
 router.register('users', UserViewSet, basename='users')
-router.register('categories', CategoryVitewSet, basename='categories')
+router.register('categories', CategoryViewSet, basename='categories')
 router.register('titles', TitlesViewSet, basename='titles')
 router.register('genres', GenreViewSet, basename='genres')
 router.register(
     r'titles/(?P<title_id>\d+)/reviews',
-    ReviewViewSet,
+    ReviewsViewSet,
     basename='reviews'
 )
 router.register(
@@ -44,8 +35,8 @@ router.register(
 
 urlpatterns = [
     path('v1/', include(router.urls)),
-    path('v1/auth/token', ...),
-    path('v1/auth/signup', ...),
+    # path('v1/auth/token', ...),
+    # path('v1/auth/signup', ...),
     path('v1/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('v1/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

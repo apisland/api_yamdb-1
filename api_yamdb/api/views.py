@@ -2,10 +2,16 @@ from django.shortcuts import get_object_or_404
 from rest_framework import filters, permissions, viewsets
 from reviews.models import Category, Comment, Genre, Reviews, Titles, User
 from api.mixins import GetListViewSet
-
+from rest_framework.mixins import CreateModelMixin
 from api.serializers import (CategorySerializer, CommentSerializer,
                              GenreSerializer, ReviewsSerializer,
-                             TitlesSerializer, UserSerializer)
+                             TitlesSerializer, UserSerializer, TokenSerializer)
+from rest_framework.response import Response
+from rest_framework import status
+
+class RegisеterViewSet(CreateModelMixin):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

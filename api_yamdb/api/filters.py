@@ -1,6 +1,5 @@
-from rest_framework import filters
 from reviews.models import Titles
-
+from django_filters import rest_framework as filters
 
 class TitleFilter(filters.FilterSet):
     """Фильтры для произведений."""

@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import (MaxValueValidator, MinValueValidator,
                                     RegexValidator)
 from django.db import models
+from django.utils import timezone
 
 
 class User(AbstractUser):
@@ -43,9 +44,11 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    @property
     def is_moderator(self):
         return self.role == self.MODERATOR
 
+    @property
     def is_admin(self):
         return self.role == self.ADMIN
 
@@ -54,13 +57,13 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
-        #constraints = [
+        # constraints = [
         #    models.UniqueConstraint(
         #            fields=['username'],
         #            condition=models.Q(username='me'),
         #            name='username_cannot_be_me'
         #    ),
-        #]
+        # ]
 
 
 class Category(models.Model):
@@ -103,7 +106,8 @@ class Titles(models.Model):
         max_length=100,
         verbose_name='Название'
     )
-    year = models.IntegerField(
+    year = models.PositiveIntegerField(
+        validators=[MaxValueValidator(timezone.now().year)],
         verbose_name='Дата выхода'
     )
     category = models.ForeignKey(
@@ -111,11 +115,22 @@ class Titles(models.Model):
         on_delete=models.SET_NULL,
         related_name='titles',
         null=True,
-        verbose_name='Категория')
+        verbose_name='Категория'
+    )
     rating = models.IntegerField(
         verbose_name='Рейтинг',
         null=True,
         default=None
+    )
+    description = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name='Описание',
+    )
+    genre = models.ManyToManyField(
+        Genre,
+        verbose_name='Жанр',
+        through='GenreTitle'
     )
 
     def __str__(self):
@@ -179,12 +194,12 @@ class Reviews(models.Model):
 
     class Meta:
         ordering = ('pub_date',)
-        #constraints = [
+        # constraints = [
         #    models.UniqueConstraint(
         #        fields=['title', 'author'],
         #        name='unique_title_author'
         #    )
-        #]
+        # ]
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
 

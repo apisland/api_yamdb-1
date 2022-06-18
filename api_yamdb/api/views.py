@@ -11,10 +11,11 @@ from api.permissions import (IsAdmin, IsAdminModeratorAuthorOrReadOnly,
                              IsAuthorOrReadOnly, ReadOnly)
 from api.serializers import (CategorySerializer, CommentSerializer,
                              GenreSerializer, ReviewsSerializer,
-                             TitlesSerializer, TokenSerializer, UserSerializer)
+                             TitlesSerializer, TokenSerializer, UserSerializer, UserEditionSerializer)
 
 from api.filters import TitleFilter
 from django_filters.rest_framework import DjangoFilterBackend
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -22,34 +23,47 @@ class UserViewSet(viewsets.ModelViewSet):
     pagination_class = PageNumberPagination
     permission_classes = (IsAdminModeratorAuthorOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
-    filterset_fields = ('username')
+    filter_fields = ('username',)
     search_fields = ('username',)
     lookup_field = 'username'
     
-    #  @action(
-    #      methods=['get', 'patch'],
-    #      detail=False
-    #  )
+    @action(methods=['get', 'patch'],
+            detail=False,
+            serializer_class=UserEditionSerializer,
+            permission_classes=[permissions.IsAuthenticated],
+            url_path='me')
+    def user_update_profile(self, request):
+        user = request.user
+        if request.method == 'GET':
+            serializer = UserEditionSerializer(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        elif request.method == 'PATCH':
+            serializer = UserEditionSerializer(partial=True, data=request.data)
+            serializer.is_valid()
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class CategoryViewSet(CreateLisDestroytViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = (IsAdmin, ReadOnly,)
 
 
 class GenreViewSet(CreateLisDestroytViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
+    permission_classes = (IsAdmin, ReadOnly,)
 
 
 class TitlesViewSet(viewsets.ModelViewSet):
-    queryset = Titles.objects.annotate(rating=Avg('reviews_score'))
+    queryset = Titles.objects.all().annotate(Avg('reviews__score'))
     serializer_class = TitlesSerializer
     permission_classes = (IsAdmin, ReadOnly)
-    pagination_class =PageNumberPagination
+    pagination_class = PageNumberPagination
     filter_class = TitleFilter
     filter_backends = (DjangoFilterBackend,)
-
 
 
 class CommentViewSet(viewsets.ModelViewSet):
@@ -70,9 +84,16 @@ class ReviewsViewSet(viewsets.ModelViewSet):
     
     def get_queryset(self):
         title = get_object_or_404(Titles, id=self.kwargs.get('title_id'))
-        new_queryset = title.reviews.all()
-        return new_queryset
+        return title.reviews.all()
 
     def perform_create(self, serializer):
         title = get_object_or_404(Titles, id=self.kwargs.get('title_id'))
         serializer.save(author=self.request.user, title=title)
+
+
+class RegisterViewSet(viewsets.ModelViewSet):
+    pass
+
+
+class GetTokenViewSet(viewsets.ModelViewSet):
+    pass

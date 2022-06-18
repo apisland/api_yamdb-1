@@ -6,12 +6,37 @@ from reviews.models import User, Category, Genre, Titles, Reviews, Comment
 
 
 class UserSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(required=True)
-    email = serializers.EmailField(required=True)
+    username = serializers.CharField(
+        required=True,
+        validators=[
+            UniqueValidator(queryset=User.objects.all())]
+    )
+    email = serializers.EmailField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())]
+    )
 
     class Meta:
         fields = ("username", "email", "first_name",
                   "last_name", "bio", "role")
+        model = User
+
+
+class UserEditionSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ("username", "email", "first_name",
+                  "last_name", "bio")
+        model = User
+        read_only_fields = ("role",)
+
+
+    def validate_user(self, user):
+        if user.lower() == 'me':
+            raise serializers.ValidationError("username cannot be me")
+        return user
+
+    class Meta:
+        fields = ('username', 'email')
         model = User
 
 
@@ -36,7 +61,6 @@ class TitlesSerializer(serializers.ModelSerializer):
     category = serializers.SlugRelatedField(
         slug_field='slug', queryset=Category.objects.all()
     )
-    rating = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Titles
@@ -100,3 +124,15 @@ class TokenSerializer(serializers.ModelSerializer):
                 ]
             }
         }
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(
+        required=True,
+        validators=[
+            UniqueValidator(queryset=User.objects.all())]
+    )
+    email = serializers.EmailField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())]
+    )

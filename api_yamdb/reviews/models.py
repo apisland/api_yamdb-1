@@ -22,7 +22,7 @@ class User(AbstractUser):
         max_length=150,
         verbose_name='Имя пользователя',
         unique=True,
-        db_index=True,
+        null=True,
         validators=[RegexValidator(
             regex=r'^[\w.@+-]+$',
             message='Имя пользователя содержит недопустимый символ'
@@ -57,13 +57,12 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
-        # constraints = [
-        #    models.UniqueConstraint(
-        #            fields=['username'],
-        #            condition=models.Q(username='me'),
-        #            name='username_cannot_be_me'
-        #    ),
-        # ]
+        constraints = [
+            models.CheckConstraint(
+                    check=models.Q(username__iexact='me'),
+                    name='username_cannot_be_me'
+            ),
+        ]
 
 
 class Category(models.Model):
@@ -194,12 +193,12 @@ class Reviews(models.Model):
 
     class Meta:
         ordering = ('pub_date',)
-        # constraints = [
-        #    models.UniqueConstraint(
-        #        fields=['title', 'author'],
-        #        name='unique_title_author'
-        #    )
-        # ]
+        constraints = [
+            models.UniqueConstraint(
+                fields=['title', 'author'],
+                name='unique_title_author'
+            ),
+        ]
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
 

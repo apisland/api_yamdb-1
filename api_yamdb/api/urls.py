@@ -4,6 +4,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from .views import create_user, get_jwt_token
 
 from api.views import (
     CategoryViewSet,
@@ -12,18 +13,16 @@ from api.views import (
     TitlesViewSet,
     UserViewSet,
     ReviewsViewSet,
-    RegisterViewSet,
-    GetTokenViewSet
 )
 
 app_name = 'api'
 
 router = DefaultRouter()
 
-router.register('users', UserViewSet, basename='users')
-router.register('categories', CategoryViewSet, basename='categories')
-router.register('titles', TitlesViewSet, basename='titles')
-router.register('genres', GenreViewSet, basename='genres')
+router.register(r'users', UserViewSet, basename='users')
+router.register(r'categories', CategoryViewSet, basename='categories')
+router.register(r'titles', TitlesViewSet, basename='titles')
+router.register(r'genres', GenreViewSet, basename='genres')
 router.register(
     r'titles/(?P<title_id>\d+)/reviews',
     ReviewsViewSet,
@@ -37,6 +36,6 @@ router.register(
 
 urlpatterns = [
     path('v1/', include(router.urls)),
-    path('v1/auth/token', GetTokenViewSet.as_view),
-    path('v1/auth/signup', RegisterViewSet.as_view),
+    path('v1/auth/token/', get_jwt_token),
+    path('v1/auth/signup/', create_user),
 ]

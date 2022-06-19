@@ -29,12 +29,6 @@ class UserEditionSerializer(serializers.ModelSerializer):
         model = User
         read_only_fields = ("role",)
 
-
-    def validate_user(self, user):
-        if user.lower() == 'me':
-            raise serializers.ValidationError("username cannot be me")
-        return user
-
     class Meta:
         fields = ('username', 'email')
         model = User
@@ -136,3 +130,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
+
+    class Meta:
+        model = User
+        fields = ("username", "email")
+
+    def validate_username(self, user):
+        if user.lower() == 'me':
+            raise serializers.ValidationError("username cannot be me")
+        return user
+

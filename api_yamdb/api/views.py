@@ -3,16 +3,21 @@ from rest_framework import filters, permissions, status, viewsets
 from rest_framework.response import Response
 from reviews.models import Category, Comment, Genre, Reviews, Titles, User
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.decorators import api_view, action
+from rest_framework.decorators import action, api_view, permission_classes
 from django.db.models import Avg
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.core.mail import send_mail
 
+from rest_framework_simplejwt.views import TokenObtainPairView
+from django.contrib.auth.tokens import default_token_generator
 from api.mixins import CreateLisDestroytViewSet
 from api.permissions import (IsAdmin, IsAdminModeratorAuthorOrReadOnly,
                              IsAuthorOrReadOnly, ReadOnly)
 from api.serializers import (CategorySerializer, CommentSerializer,
                              GenreSerializer, ReviewsSerializer,
-                             TitlesSerializer, TokenSerializer, UserSerializer, UserEditionSerializer)
-
+                             TitlesSerializer, TokenSerializer, UserSerializer, UserEditionSerializer,
+                             RegisterSerializer)
+from rest_framework import mixins
 from api.filters import TitleFilter
 from django_filters.rest_framework import DjangoFilterBackend
 

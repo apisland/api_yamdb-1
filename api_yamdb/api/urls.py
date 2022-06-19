@@ -36,7 +36,7 @@ router.register(
 )
 
 urlpatterns = [
-    path('v1/', include(router.urls)),
-    path('v1/auth/token', GetTokenViewSet.as_view),
-    path('v1/auth/signup', RegisterViewSet.as_view),
+    path(r'v1/', include(router.urls)),
+    path(r'auth/token/', GetTokenViewSet.as_view, name='token'),
+    path(r'v1/auth/signup/', RegisterViewSet.as_view, name='register'),
 ]

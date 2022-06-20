@@ -1,34 +1,17 @@
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import send_mail
 from rest_framework import filters, permissions, status, viewsets
 from rest_framework.response import Response
 from reviews.models import Category, Comment, Genre, Reviews, Titles, User
 from rest_framework.pagination import PageNumberPagination
-<<<<<<< HEAD
-from rest_framework.decorators import action, api_view, permission_classes
-=======
 from rest_framework.decorators import api_view, action, permission_classes
->>>>>>> 0f9d9290be326225515c29ca254e35ad436cbd12
-from django.db.models import Avg
-from rest_framework_simplejwt.tokens import RefreshToken
 from django.core.mail import send_mail
-
-from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.tokens import default_token_generator
-from api.mixins import CreateLisDestroytViewSet
 from api.permissions import (IsAdmin, IsAdminModeratorAuthorOrReadOnly,
-                             IsAuthorOrReadOnly, ReadOnly)
+                             ReadOnly)
 from api.serializers import (CategorySerializer, CommentSerializer,
                              GenreSerializer, ReviewsSerializer,
                              TitlesSerializer, TokenSerializer, UserSerializer, UserEditionSerializer,
                              RegisterSerializer)
-<<<<<<< HEAD
-from rest_framework import mixins
-=======
-from rest_framework_simplejwt.tokens import RefreshToken
-
->>>>>>> 0f9d9290be326225515c29ca254e35ad436cbd12
 from api.filters import TitleFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework_simplejwt.tokens import AccessToken
@@ -130,6 +113,7 @@ class ReviewsViewSet(viewsets.ModelViewSet):
         title = get_object_or_404(Titles, id=self.kwargs.get('title_id'))
         serializer.save(author=self.request.user, title=title)
 
+
 @api_view(["POST"])
 @permission_classes([permissions.AllowAny])
 def create_user(request):
@@ -148,6 +132,7 @@ def create_user(request):
         recipient_list=[user.email],
     )
     return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 @api_view(["POST"])
 @permission_classes([permissions.AllowAny])

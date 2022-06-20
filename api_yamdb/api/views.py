@@ -10,7 +10,7 @@ from django.db.models import Avg
 
 from api.mixins import CreateLisDestroytViewSet
 from api.permissions import (IsAdmin, IsAdminModeratorAuthorOrReadOnly,
-                             IsAuthorOrReadOnly, ReadOnly)
+                             IsAuthorOrReadOnly,IsAdminOrReadOnly, ReadOnly)
 from api.serializers import (CategorySerializer, CommentSerializer,
                              GenreSerializer, ReviewsSerializer,
                              TitlesSerializer, TokenSerializer, UserSerializer, UserEditionSerializer,
@@ -53,7 +53,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = PageNumberPagination
-    permission_classes = (ReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ['name', ]
     lookup_field = 'slug'
@@ -69,7 +69,7 @@ class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
     pagination_class = PageNumberPagination
-    permission_classes = (ReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ['name', ]
     lookup_field = 'slug'
@@ -84,7 +84,7 @@ class GenreViewSet(viewsets.ModelViewSet):
 class TitlesViewSet(viewsets.ModelViewSet):
     queryset = Titles.objects.all()
     serializer_class = TitlesSerializer
-    permission_classes = (ReadOnly,)
+    permission_classes = (IsAdminOrReadOnly,)
     pagination_class = PageNumberPagination
     filter_class = TitleFilter
     filter_backends = (DjangoFilterBackend,)
@@ -96,11 +96,11 @@ class CommentViewSet(viewsets.ModelViewSet):
     pagination_class = PageNumberPagination
 
     def get_queryset(self):
-        review = get_object_or_404(Comment, id=self.kwargs.get('reviews_id'))
+        review = get_object_or_404(Comment, id=self.kwargs.get('review_id'))
         return review.comments.all()
 
     def perform_create(self, serializer):
-        review = get_object_or_404(Reviews, pk=self.kwargs.get('reviews_id'))
+        review = get_object_or_404(Reviews, pk=self.kwargs.get('review_id'))
         serializer.save(author=self.request.user, review=review)
 
 

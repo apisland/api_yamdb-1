@@ -19,9 +19,9 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    ADMIN = 'Admin'
-    MODERATOR = 'Moderator'
-    USER = 'User'
+    ADMIN = 'admin'
+    MODERATOR = 'moderator'
+    USER = 'user'
     ROLES = [
         (ADMIN, 'Administrator'),
         (MODERATOR, 'Moderator'),
@@ -65,7 +65,7 @@ class User(AbstractUser):
     @property
     def is_admin(self):
         return self.role == self.ADMIN
-    
+
     @property
     def is_user(self):
         return self.role == self.USER
@@ -75,12 +75,12 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
-        #constraints = [
-        #    models.CheckConstraint(
-        #            check=models.Q(username__iexact='me'),
-        #            name='username_cannot_be_me'
-        #    ),
-        #]
+        constraints = [
+            models.UniqueConstraint(
+                fields=['username', 'email'],
+                name='unique_username_email'
+            ),
+        ]
 
 
 class Category(models.Model):
@@ -118,7 +118,7 @@ class Genre(models.Model):
         ordering = ('name',)
 
 
-class Titles(models.Model):
+class Title(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название'
@@ -161,7 +161,7 @@ class Titles(models.Model):
 
 class GenreTitle(models.Model):
     title = models.ForeignKey(
-        Titles,
+        Title,
         on_delete=models.CASCADE,
         verbose_name='Произведение'
     )
@@ -179,7 +179,7 @@ class GenreTitle(models.Model):
         verbose_name_plural = 'Произведения и жанры'
 
 
-class Reviews(models.Model):
+class Review(models.Model):
     text = models.CharField(
         max_length=1000,
         verbose_name='Текст'
@@ -187,11 +187,11 @@ class Reviews(models.Model):
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='reviews',
+        related_name='review',
         verbose_name='Автор'
     )
     title = models.ForeignKey(
-        Titles,
+        Title,
         on_delete=models.CASCADE,
         related_name='reviews',
         verbose_name='Произведение'
@@ -223,7 +223,7 @@ class Reviews(models.Model):
 
 class Comment(models.Model):
     review = models.ForeignKey(
-        Reviews,
+        Review,
         on_delete=models.CASCADE,
         related_name='comments',
         verbose_name='Отзыв'

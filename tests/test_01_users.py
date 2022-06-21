@@ -48,6 +48,7 @@ class Test01UserAPI:
         assert response.status_code != 404, (
             'Страница `/api/v1/users/` не найдена, проверьте этот адрес в *urls.py*'
         )
+
         assert response.status_code == 200, (
             'Проверьте, что при GET запросе `/api/v1/users/` с токеном авторизации возвращается статус 200'
         )

@@ -1,5 +1,6 @@
-from reviews.models import Titles
+from reviews.models import Title
 from django_filters import rest_framework as filters
+
 
 class TitleFilter(filters.FilterSet):
     """Фильтры для произведений."""
@@ -10,5 +11,5 @@ class TitleFilter(filters.FilterSet):
     year = filters.NumberFilter(field_name="year")
 
     class Meta:
-        model = Titles
+        model = Title
         fields = ["genre", "category", "name", "year"]

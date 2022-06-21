@@ -10,7 +10,7 @@ from django.db.models import Avg
 
 from api.mixins import CreateLisDestroytViewSet
 from api.permissions import (IsAdmin, IsAdminModeratorAuthorOrReadOnly,
-                             IsAdminOrReadOnly)
+                             ReadOnly, IsAdminOrReadOnly)
 from api.serializers import (CategorySerializer, CommentSerializer,
                              GenreSerializer, ReviewSerializer,
                              TitleSerializer, TokenSerializer, UserSerializer,

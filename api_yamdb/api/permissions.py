@@ -30,11 +30,6 @@ class IsAdminModeratorAuthorOrReadOnly(permissions.BasePermission):
 
 class IsAdmin(permissions.BasePermission):
     def has_permission(self, request, view):
-        # user = request.user
-        # breakpoint()
-        # print(request.user.is_authenticated)
-        # print(request.user.is_admin)
-        # print(request.user.is_superuser)
         return request.user.is_authenticated and (
             request.user.is_admin or request.user.is_superuser)
 

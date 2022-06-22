@@ -1,25 +1,24 @@
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
+from django.db.models import Avg
 from rest_framework import filters, permissions, status, viewsets
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
-from reviews.models import Category, Comment, Genre, Review, Title, User
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework_simplejwt.tokens import AccessToken
 from rest_framework.decorators import api_view, action, permission_classes
-from django.db.models import Avg
 
+from reviews.models import Category, Genre, Review, Title, User
 from api.mixins import CreateLisDestroytViewSet
 from api.permissions import (IsAdmin, IsAdminModeratorAuthorOrReadOnly,
-                             ReadOnly, IsAdminOrReadOnly)
+                             IsAdminOrReadOnly)
 from api.serializers import (CategorySerializer, CommentSerializer,
                              GenreSerializer, ReviewSerializer,
                              TitleSerializer, TokenSerializer, UserSerializer,
                              UserEditSerializer, ReadOnlyTitleSerializer,
                              RegisterSerializer)
-
 from api.filters import TitleFilter
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework_simplejwt.tokens import AccessToken
 
 
 class UserViewSet(viewsets.ModelViewSet):

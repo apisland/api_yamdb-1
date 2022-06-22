@@ -52,10 +52,6 @@ class User(AbstractUser):
     def is_admin(self):
         return self.role == self.ADMIN
 
-    @property
-    def is_user(self):
-        return self.role == self.USER
-
     class Meta:
         ordering = ('id',)
         verbose_name = 'Пользователь'

@@ -14,6 +14,7 @@ DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
 
+CSV_FILES_DIR = os.path.join(BASE_DIR, 'static/data')
 
 INSTALLED_APPS = [
     'django.contrib.admin',

@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view, action, permission_classes
 from reviews.models import Category, Genre, Review, Title, User
 from api.mixins import CreateLisDestroytViewSet
 from api.permissions import (IsAdmin, IsAdminModeratorAuthorOrReadOnly,
-                             IsAdminOrReadOnly)
+                             IsAdminOrSuperuserOrReadOnly)
 from api.serializers import (CategorySerializer, CommentSerializer,
                              GenreSerializer, ReviewSerializer,
                              TitleSerializer, TokenSerializer, UserSerializer,
@@ -57,7 +57,7 @@ class CategoryViewSet(CreateLisDestroytViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     pagination_class = PageNumberPagination
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (IsAdminOrSuperuserOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ['name', ]
     lookup_field = 'slug'
@@ -73,7 +73,7 @@ class GenreViewSet(CreateLisDestroytViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
     pagination_class = PageNumberPagination
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (IsAdminOrSuperuserOrReadOnly,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ['name', ]
     lookup_field = 'slug'
@@ -90,7 +90,7 @@ class TitleViewSet(viewsets.ModelViewSet):
         Avg('reviews__score')
     ).order_by('name')
     serializer_class = TitleSerializer
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (IsAdminOrSuperuserOrReadOnly,)
     pagination_class = PageNumberPagination
     filterset_class = TitleFilter
     filter_backends = (DjangoFilterBackend,)

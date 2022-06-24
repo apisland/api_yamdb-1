@@ -1,5 +1,4 @@
-# api_yamdb
-api_yamdb
+#api_yamdb
 Как запустить проект:
 Клонировать репозиторий и перейти в него в командной строке:
 git@github.com:yandex-praktikum/api_yamdb.git

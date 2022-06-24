@@ -51,6 +51,18 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+## Endpoints for example
+http://127.0.0.1:8000/api/v1/auth/signup/
+http://127.0.0.1:8000/api/v1/auth/token/
+http://127.0.0.1:8000/api/v1/categories/
+http://127.0.0.1:8000/api/v1/genres/
+http://127.0.0.1:8000/api/v1/titles/
+http://127.0.0.1:8000/api/v1/titles/1/reviews/
+http://127.0.0.1:8000/api/v1/titles/1/reviews/1/comments/
+http://127.0.0.1:8000/api/v1/users/
+http://127.0.0.1:8000/api/v1/users/me/
+
+
 ## Collaborators:
 [Andrey Kruglov](https://github.com/Alastor047) |
 [Valentin Klimov](https://github.com/apisland) |

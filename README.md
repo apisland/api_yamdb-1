@@ -18,4 +18,4 @@ python3 manage.py migrate
 Запустить проект:
 
 python3 manage.py runserver
-!(https://img.shields.io/pypi/pyversions/p5?color=green&label=python&logo=python&logoColor=green)
+![text](https://img.shields.io/pypi/pyversions/p5?color=green&label=python&logo=python&logoColor=green)

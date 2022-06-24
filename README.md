@@ -16,8 +16,8 @@ Reviews (Get a list of all reviews, create a new review, get a review by id, par
 
 - **_Reviewed artworks_** Get a list of all items, create a review item, item info, update item info, delete item
 
-api_yamdb/static/redoc.yaml
-[Documentation(ru)](api_yamdb/static/redoc.yaml)
+
+# [Documentation(ru)](api_yamdb/static/redoc.yaml)
 
 
 Как запустить проект:

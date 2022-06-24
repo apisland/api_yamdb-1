@@ -55,3 +55,8 @@ python manage.py runserver
 [Andrey Kruglov](https://github.com/Alastor047) |
 [Valentin Klimov](https://github.com/apisland) |
 [Ivan Krasnikov](https://github.com/krivse)
+
+
+![](https://img.shields.io/pypi/pyversions/p5?logo=python&logoColor=yellow&style=for-the-badge)
+![](https://img.shields.io/badge/Django-2.2.16-blue)
+![](https://img.shields.io/badge/DRF-3.12.4-lightblue)

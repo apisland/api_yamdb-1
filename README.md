@@ -27,10 +27,12 @@ Reviews (Get a list of all reviews, create a new review, get a review by id, par
 >cd api_final_yatube
 
 
+
 - Create and activate virtual environment:
 >python -m venv env
 
 >source venv/Scripts/activate
+
 
 
 - Install requirements from a file **requirements.txt**:
@@ -38,8 +40,12 @@ Reviews (Get a list of all reviews, create a new review, get a review by id, par
 
 >pip install -r requirements.txt
 
+
+
 - Run migrations:
 >python manage.py migrate
+
+
 
 - Start project:
 >python manage.py runserver

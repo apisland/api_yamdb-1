@@ -60,12 +60,6 @@ class CategoryViewSet(CreateLisDestroytViewSet):
     search_fields = ['name', ]
     lookup_field = 'slug'
 
-    def retrieve(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def update(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
 
 class GenreViewSet(CreateLisDestroytViewSet):
     queryset = Genre.objects.all()
@@ -75,12 +69,6 @@ class GenreViewSet(CreateLisDestroytViewSet):
     filter_backends = (filters.SearchFilter,)
     search_fields = ['name', ]
     lookup_field = 'slug'
-
-    def retrieve(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
-    def update(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class TitleViewSet(viewsets.ModelViewSet):

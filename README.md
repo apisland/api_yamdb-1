@@ -29,12 +29,15 @@ git@github.com:Alastor047/api_yamdb.git
 - Create and activate virtual environment:
 ```
 python -m venv venv
-'''
+```
+```
 source venv/Scripts/activate
 ```
 - Install requirements from a file **requirements.txt**:
 ```
 python -m pip install --upgrade pip
+```
+```
 pip install -r requirements.txt
 ```
 - Run migrations:

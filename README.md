@@ -25,18 +25,22 @@ Reviews (Get a list of all reviews, create a new review, get a review by id, par
 >git@github.com:yandex-praktikum/api_yamdb.git
 
 >cd api_final_yatube
-Cоздать и активировать виртуальное окружение:
 
-python3 -m venv env
-source venv/Scripts/activate
-Установить зависимости из файла requirements.txt:
 
-python3 -m pip install --upgrade pip
-pip install -r requirements.txt
-Выполнить миграции:
+- Cоздать и активировать виртуальное окружение:
+>python -m venv env
 
-python3 manage.py migrate
-Запустить проект:
+>source venv/Scripts/activate
 
-python3 manage.py runserver
+
+- Установить зависимости из файла requirements.txt:
+>python -m pip install --upgrade pip
+
+>pip install -r requirements.txt
+
+- Выполнить миграции:
+>python manage.py migrate
+
+- Запустить проект:
+>python manage.py runserver
 

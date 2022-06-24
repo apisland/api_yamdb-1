@@ -23,6 +23,7 @@ Reviews (Get a list of all reviews, create a new review, get a review by id, par
 ## How to start:
 - Clone the repository and change into it on the command line:
 >git@github.com:yandex-praktikum/api_yamdb.git
+
 >cd api_final_yatube
 Cоздать и активировать виртуальное окружение:
 

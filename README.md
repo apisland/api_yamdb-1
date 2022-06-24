@@ -61,8 +61,8 @@ python manage.py runserver
 - Comment List       http://127.0.0.1:8000/api/v1/titles/1/reviews/1/comments/
 - User List          http://127.0.0.1:8000/api/v1/users/
 - User self profile  http://127.0.0.1:8000/api/v1/users/me/
-
-
+You can also add the id number to the end of the List-endpoint path to get a separate instance as shown here:
+http://127.0.0.1:8000/api/v1/titles/1/reviews/1
 ## Collaborators:
 [Andrey Kruglov](https://github.com/Alastor047) |
 [Valentin Klimov](https://github.com/apisland) |

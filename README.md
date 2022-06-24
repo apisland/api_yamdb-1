@@ -22,19 +22,26 @@ Reviews (Get a list of all reviews, create a new review, get a review by id, par
 
 ## How to start:
 - Clone the repository and change into it on the command line:
->git@github.com:Alastor047/api_yamdb.git
-
+```
+git@github.com:Alastor047/api_yamdb.git
+```
 >cd api_final_yatube
 - Create and activate virtual environment:
->python -m venv env
-
->source venv/Scripts/activate
+```
+python -m venv env
+source venv/Scripts/activate
+```
 - Install requirements from a file **requirements.txt**:
->python -m pip install --upgrade pip
-
->pip install -r requirements.txt
+```
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
 - Run migrations:
->python manage.py migrate
+```
+python manage.py migrate
+```
 - Start project:
->python manage.py runserver
+```
+python manage.py runserver
+```
 

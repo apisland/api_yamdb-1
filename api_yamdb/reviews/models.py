@@ -75,13 +75,13 @@ class Category(models.Model):
         verbose_name='Идентификатор'
     )
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         ordering = ('name',)
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
+    def __str__(self):
+        return self.name
 
 
 class Genre(models.Model):
@@ -102,15 +102,18 @@ class Genre(models.Model):
 
 class Title(models.Model):
     name = models.CharField(
+        db_index=True,
         max_length=100,
         verbose_name='Название'
     )
     year = models.PositiveIntegerField(
+        db_index=True,
         validators=[MaxValueValidator(timezone.now().year)],
         verbose_name='Дата выхода'
     )
     category = models.ForeignKey(
         Category,
+        db_index=True,
         on_delete=models.SET_NULL,
         related_name='titles',
         null=True,
@@ -128,17 +131,18 @@ class Title(models.Model):
     )
     genre = models.ManyToManyField(
         Genre,
+        db_index=True,
         verbose_name='Жанр',
         through='GenreTitle'
     )
-
-    def __str__(self):
-        return self.name
 
     class Meta:
         verbose_name = 'Произведение'
         verbose_name_plural = 'Произведения'
         ordering = ('name',)
+
+    def __str__(self):
+        return self.name
 
 
 class GenreTitle(models.Model):
@@ -153,12 +157,12 @@ class GenreTitle(models.Model):
         verbose_name='Жанр'
     )
 
-    def __str__(self):
-        return f'{self.title}, {self.genre}'
-
     class Meta:
         verbose_name = 'Произведение и жанр'
         verbose_name_plural = 'Произведения и жанры'
+
+    def __str__(self):
+        return f'{self.title}, {self.genre}'
 
 
 class Review(models.Model):

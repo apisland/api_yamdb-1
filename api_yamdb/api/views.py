@@ -1,24 +1,24 @@
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db.models import Avg
-from rest_framework import filters, permissions, status, viewsets
-from rest_framework.response import Response
-from rest_framework.pagination import PageNumberPagination
+from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters, permissions, status, viewsets
+from rest_framework.decorators import action, api_view, permission_classes
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import AccessToken
-from rest_framework.decorators import api_view, action, permission_classes
 
-from reviews.models import Category, Genre, Review, Title, User
+from api.filters import TitleFilter
 from api.mixins import CreateLisDestroytViewSet
 from api.permissions import (IsAdmin, IsAdminModeratorAuthorOrReadOnly,
                              IsAdminOrSuperuserOrReadOnly)
 from api.serializers import (CategorySerializer, CommentSerializer,
-                             GenreSerializer, ReviewSerializer,
-                             TitleSerializer, TokenSerializer, UserSerializer,
-                             UserEditSerializer, ReadOnlyTitleSerializer,
-                             RegisterSerializer)
-from api.filters import TitleFilter
+                             GenreSerializer, ReadOnlyTitleSerializer,
+                             RegisterSerializer, ReviewSerializer,
+                             TitleSerializer, TokenSerializer,
+                             UserEditSerializer, UserSerializer)
+from reviews.models import Category, Genre, Review, Title, User
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -39,18 +39,16 @@ class UserViewSet(viewsets.ModelViewSet):
         user = request.user
         if request.method == 'GET':
             serializer = self.get_serializer(user)
-            print(serializer)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        elif request.method == 'PATCH':
-            serializer = self.get_serializer(
-                user,
-                data=request.data,
-                partial=True
-            )
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = self.get_serializer(
+            user,
+            data=request.data,
+            partial=True
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class CategoryViewSet(CreateLisDestroytViewSet):
@@ -142,7 +140,7 @@ def create_user(request):
     send_mail(
         subject='YaMDb registration',
         message=f'Your confirmation code: {confirmation_code}',
-        from_email=None,
+        from_email='admin@yamdb.com',
         recipient_list=[user.email],
     )
     return Response(serializer.data, status=status.HTTP_200_OK)

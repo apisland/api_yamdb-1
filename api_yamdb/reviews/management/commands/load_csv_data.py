@@ -1,20 +1,18 @@
 import csv
+import logging
 import os
 
+from django.conf import settings
 from django.core.management import BaseCommand
 from django.db import IntegrityError
 
-from api_yamdb.settings import CSV_FILES_DIR
-from reviews.models import (
-    Category,
-    Comment,
-    Genre,
-    GenreTitle,
-    Review,
-    Title,
-    User,
-)
+from reviews.models import (Category, Comment, Genre, GenreTitle, Review,
+                            Title, User)
 
+logging.basicConfig(
+    level=logging.ERROR,
+    format='%(message)s, %(pathname)s'
+)
 
 FILES_CLASSES = {
     'category': Category,
@@ -37,12 +35,12 @@ FIELDS = {
 
 def open_csv_file(file_name):
     csv_file = file_name + '.csv'
-    csv_path = os.path.join(CSV_FILES_DIR, csv_file)
+    csv_path = os.path.join(settings.CSV_FILES_DIR, csv_file)
     try:
         with (open(csv_path, encoding='utf-8')) as file:
             return list(csv.reader(file))
     except FileNotFoundError:
-        print(f'Файл {csv_file} не найден.')
+        logging.error(f'Файл {csv_file} не найден.')
         return
 
 
@@ -68,8 +66,8 @@ def load_csv(file_name, class_name):
             table = class_name(**data_csv)
             table.save()
         except (ValueError, IntegrityError) as error:
-            print(f'Ошибка в загружаемых данных. {error}. '
-                  f'{table_not_loaded}')
+            logging.error(f'Ошибка в загружаемых данных. {error}. '
+                          f'{table_not_loaded}')
             break
     print(table_loaded)
 

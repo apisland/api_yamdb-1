@@ -20,4 +20,4 @@ python3 manage.py migrate
 python3 manage.py runserver
 
 
-![](https://img.shields.io/pypi/pyversions/p5?color=green&label=python&logo=python&logoColor=green)
+![]([https://img.shields.io/pypi/pyversions/p5?color=green&label=python&logo=python&logoColor=green](https://img.shields.io/badge/dynamic/xml?color=green&label=python&query=3.7&url=https%3A%2F%2Fwww.python.org%2Fdownloads%2Frelease%2Fpython-3713%2F))

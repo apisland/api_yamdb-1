@@ -28,7 +28,8 @@ git@github.com:Alastor047/api_yamdb.git
 >cd api_final_yatube
 - Create and activate virtual environment:
 ```
-python -m venv env
+python -m venv venv
+'''
 source venv/Scripts/activate
 ```
 - Install requirements from a file **requirements.txt**:

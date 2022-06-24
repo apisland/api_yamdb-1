@@ -2,9 +2,9 @@
 RestAPI for YaMDb service - database of movies, books, music reviews
 <h2 align="left">About</h2>
 API for the YaMDb service. Allows you to work with:
-Reviews (Get a list of all reviews, create a new review, get a review by id, partially update a review by id, delete a review by id)
+- **_Reviews_** Get a list of all reviews, create a new review, get a review by id, partially update a review by id, delete a review by id
 
-- **_Review comments_** (Get list of all review comments by id, create new review comment, get review comment by id, partially update review comment by id, delete review comment by id)
+- **_Review comments_** Get list of all review comments by id, create new review comment, get review comment by id, partially update review comment by id, delete review comment by id
 
 - **_JWT token_** Sending confirmation_code to the given email, receiving JWT token in exchange for email and confirmation_code
 

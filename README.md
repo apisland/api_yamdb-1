@@ -10,9 +10,9 @@ Reviews (Get a list of all reviews, create a new review, get a review by id, par
 
 - **Users** Get a list of all users, create a user, get a user by username, change user details by username, delete a user by username, get their account details, change their account details
 
-- **Categories (types) of works** Get a list of all categories, create a category, delete a category
+- __**Categories (types) of works**__ Get a list of all categories, create a category, delete a category
 
-- **Genre** categories Get a list of all genres, create a genre, delete a genre
+- _**Genre**_ categories Get a list of all genres, create a genre, delete a genre
 
 - **Reviewed** artworks Get a list of all items, create a review item, item info, update item info, delete item
 

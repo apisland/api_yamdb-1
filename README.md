@@ -52,15 +52,15 @@ python manage.py runserver
 ```
 
 ## Endpoints for example
-Create User        http://127.0.0.1:8000/api/v1/auth/signup/    
-Get Jwt Token      http://127.0.0.1:8000/api/v1/auth/token/
-Category List      http://127.0.0.1:8000/api/v1/categories/
-Genre List         http://127.0.0.1:8000/api/v1/genres/
-Title List         http://127.0.0.1:8000/api/v1/titles/
-Review List        http://127.0.0.1:8000/api/v1/titles/1/reviews/
-Comment List       http://127.0.0.1:8000/api/v1/titles/1/reviews/1/comments/
-User List          http://127.0.0.1:8000/api/v1/users/
-User self profile  http://127.0.0.1:8000/api/v1/users/me/
+- Create User        http://127.0.0.1:8000/api/v1/auth/signup/    
+- Get Jwt Token      http://127.0.0.1:8000/api/v1/auth/token/
+- Category List      http://127.0.0.1:8000/api/v1/categories/
+- Genre List         http://127.0.0.1:8000/api/v1/genres/
+- Title List         http://127.0.0.1:8000/api/v1/titles/
+- Review List        http://127.0.0.1:8000/api/v1/titles/1/reviews/
+- Comment List       http://127.0.0.1:8000/api/v1/titles/1/reviews/1/comments/
+- User List          http://127.0.0.1:8000/api/v1/users/
+- User self profile  http://127.0.0.1:8000/api/v1/users/me/
 
 
 ## Collaborators:

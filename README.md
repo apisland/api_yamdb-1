@@ -1,4 +1,6 @@
-<h1 align="center">api_yamdb</h1>
+<h1 align="center">Educational project: api_yamdb</h1>
+RestAPI for YaMDb service - database of movies, books, music reviews
+<h2 align="left">About</h2>
 Как запустить проект:
 Клонировать репозиторий и перейти в него в командной строке:
 git@github.com:yandex-praktikum/api_yamdb.git

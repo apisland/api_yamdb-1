@@ -69,7 +69,8 @@ python manage.py runserver
 - User self profile  http://127.0.0.1:8000/api/v1/users/me/
 - _You can also add the id number to the end of the **List-endpoint** path to get a separate instance as shown here:_
 http://127.0.0.1:8000/api/v1/titles/1/reviews/1
-![You will see this response](https://user-images.githubusercontent.com/99352898/175463539-8f316740-144f-40b6-943e-66305e04d46c.jpg)
+###### You will see this response:
+![Response](https://user-images.githubusercontent.com/99352898/175463539-8f316740-144f-40b6-943e-66305e04d46c.jpg)
 
 ## Collaborators:
 [Andrey Kruglov](https://github.com/Alastor047) |

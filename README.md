@@ -52,8 +52,14 @@ python manage.py runserver
 ```
 
 ## Endpoints for example
-- Create User        http://127.0.0.1:8000/api/v1/auth/signup/    
+- Create User        http://127.0.0.1:8000/api/v1/auth/signup/
+```
+{ "email": "string", "username": "string" }
+```
 - Get Jwt Token      http://127.0.0.1:8000/api/v1/auth/token/
+```
+{ "username": "string", "confirmation_code": "string" }
+```
 - Category List      http://127.0.0.1:8000/api/v1/categories/
 - Genre List         http://127.0.0.1:8000/api/v1/genres/
 - Title List         http://127.0.0.1:8000/api/v1/titles/

@@ -24,7 +24,7 @@ router.register(
 )
 
 urlpatterns = [
-    path('/', include(router.urls)),
-    path('/auth/token/', get_jwt_token),
-    path('/auth/signup/', create_user),
+    path('', include(router.urls)),
+    path('auth/token/', get_jwt_token),
+    path('auth/signup/', create_user),
 ]

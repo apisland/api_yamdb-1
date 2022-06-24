@@ -25,7 +25,9 @@ Reviews (Get a list of all reviews, create a new review, get a review by id, par
 ```
 git@github.com:Alastor047/api_yamdb.git
 ```
->cd api_final_yatube
+```
+cd api_final_yatube
+```
 - Create and activate virtual environment:
 ```
 python -m venv venv
@@ -49,3 +51,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
+## Collaborators:
+[Andrey Kruglov](https://github.com/Alastor047)
+[Valentin Klimov](https://github.com/apisland)
+[Ivan Krasnikov](https://github.com/krivse)

@@ -21,7 +21,7 @@ API for the YaMDb service. Allows you to work with:
 
 
 ## How to start:
-- Clone the repository and change into it on the command line:
+- Clone the repository and change directory into it on the command line:
 ```
 git@github.com:Alastor047/api_yamdb.git
 ```

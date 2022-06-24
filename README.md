@@ -52,6 +52,6 @@ python manage.py runserver
 ```
 
 ## Collaborators:
-[Andrey Kruglov](https://github.com/Alastor047)
-[Valentin Klimov](https://github.com/apisland)
+[Andrey Kruglov](https://github.com/Alastor047)|
+[Valentin Klimov](https://github.com/apisland)|
 [Ivan Krasnikov](https://github.com/krivse)

@@ -16,15 +16,14 @@ Reviews (Get a list of all reviews, create a new review, get a review by id, par
 
 - **_Reviewed artworks_** Get a list of all items, create a review item, item info, update item info, delete item
 
-api_yamdb/static/redoc.yaml
 
 ## [Documentation(ru)](api_yamdb/static/redoc.yaml)
 
-Как запустить проект:
-Клонировать репозиторий и перейти в него в командной строке:
-git@github.com:yandex-praktikum/api_yamdb.git
 
-cd api_final_yatube
+## How to start:
+- Clone the repository and change into it on the command line:
+>git@github.com:yandex-praktikum/api_yamdb.git
+>cd api_final_yatube
 Cоздать и активировать виртуальное окружение:
 
 python3 -m venv env

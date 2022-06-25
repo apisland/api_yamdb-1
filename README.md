@@ -1,6 +1,6 @@
-<h1 align="center">Educational project: api_yamdb</h1>
+# Educational project: api_yamdb
 RestAPI for YaMDb service - database of movies, books, music reviews
-<h2 align="left">About</h2>
+## About
 API for the YaMDb service. Allows you to work with:
 
 - **_Reviews_** Get a list of all reviews, create a new review, get a review by id, partially update a review by id, delete a review by id

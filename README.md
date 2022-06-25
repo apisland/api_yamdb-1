@@ -47,11 +47,14 @@ pip install -r requirements.txt
 ```
 python manage.py migrate
 ```
+- Upload CSV files for your database on __api_yamdb/api_yamdb/static/data/__ and use script:
+```
+python manage.py load_csv_data
+```
 - Start project:
 ```
 python manage.py runserver
 ```
-
 ## Endpoints for example
 - Create User        http://127.0.0.1:8000/api/v1/auth/signup/
 ```

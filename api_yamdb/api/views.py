@@ -1,5 +1,6 @@
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
+from django.conf import settings
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
@@ -11,13 +12,23 @@ from rest_framework_simplejwt.tokens import AccessToken
 
 from api.filters import TitleFilter
 from api.mixins import CreateLisDestroytViewSet
-from api.permissions import (IsAdmin, IsAdminModeratorAuthorOrReadOnly,
-                             IsAdminOrSuperuserOrReadOnly)
-from api.serializers import (CategorySerializer, CommentSerializer,
-                             GenreSerializer, ReadOnlyTitleSerializer,
-                             RegisterSerializer, ReviewSerializer,
-                             TitleSerializer, TokenSerializer,
-                             UserEditSerializer, UserSerializer)
+from api.permissions import (
+    IsAdmin,
+    IsAdminModeratorAuthorOrReadOnly,
+    IsAdminOrSuperuserOrReadOnly
+)
+from api.serializers import (
+    CategorySerializer,
+    CommentSerializer,
+    GenreSerializer,
+    ReadOnlyTitleSerializer,
+    RegisterSerializer,
+    ReviewSerializer,
+    TitleSerializer,
+    TokenSerializer,
+    UserEditSerializer,
+    UserSerializer
+)
 from reviews.models import Category, Genre, Review, Title, User
 
 
@@ -128,7 +139,7 @@ def create_user(request):
     send_mail(
         subject='YaMDb registration',
         message=f'Your confirmation code: {confirmation_code}',
-        from_email='admin@yamdb.com',
+        from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[user.email],
     )
     return Response(serializer.data, status=status.HTTP_200_OK)

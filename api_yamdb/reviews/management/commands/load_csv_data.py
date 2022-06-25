@@ -6,11 +6,18 @@ from django.conf import settings
 from django.core.management import BaseCommand
 from django.db import IntegrityError
 
-from reviews.models import (Category, Comment, Genre, GenreTitle, Review,
-                            Title, User)
+from reviews.models import (
+    Category,
+    Comment,
+    Genre,
+    GenreTitle,
+    Review,
+    Title,
+    User
+)
 
 logging.basicConfig(
-    level=logging.ERROR,
+    level=logging.INFO,
     format='%(message)s, %(pathname)s'
 )
 
@@ -69,12 +76,12 @@ def load_csv(file_name, class_name):
             logging.error(f'Ошибка в загружаемых данных. {error}. '
                           f'{table_not_loaded}')
             break
-    print(table_loaded)
+    logging.info(table_loaded)
 
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
         for key, value in FILES_CLASSES.items():
-            print(f'Загрузка таблицы {value.__qualname__}')
+            logging.info(f'Загрузка таблицы {value.__qualname__}')
             load_csv(key, value)

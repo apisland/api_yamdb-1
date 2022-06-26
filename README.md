@@ -79,7 +79,7 @@ http://127.0.0.1:8000/api/v1/titles/1/reviews/1
 ## Collaborators:
 [Andrey Kruglov](https://github.com/Alastor047) |
 [Valentin Klimov](https://github.com/apisland) |
-[Ivan Krasnikov](https://github.com/krivse)
+[Ivan Krasnikov](https://github.com/krivse) |
 
 
 

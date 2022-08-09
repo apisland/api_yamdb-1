@@ -1,4 +1,4 @@
-# Educational project: api_yamdb
+# Educational project: api_custom_imdb
 RestAPI for YaMDb service - database of movies, books, music reviews
 ## About
 API for the YaMDb service. Allows you to work with:
@@ -18,13 +18,13 @@ API for the YaMDb service. Allows you to work with:
 - **_Reviewed artworks_** Get a list of all items, create a review item, item info, update item info, delete item
 
 
-## [Documentation(ru)](api_yamdb/static/redoc.yaml)
+## [Documentation(ru)](api_custom_imdb/static/redoc.yaml)
 
 
 ## How to start:
 - Clone the repository and change directory into it on the command line:
 ```
-git@github.com:Alastor047/api_yamdb.git
+git@github.com:Alastor047/api_custom_imdb.git
 ```
 ```
 cd api_final_yatube
